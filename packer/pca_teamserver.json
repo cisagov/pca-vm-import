@@ -1,0 +1,26 @@
+{
+    "builders": [
+        {
+            "type": "file",
+            "source": "{{user `team_server_ova_file`}}",
+            "target": "vm_copy.ova"
+        }
+    ],
+    "post-processors" : [
+        [
+            {
+                "type": "amazon-import",
+                "region": "{{user `region`}}",
+                "ami_name": "pca-teamserver-hvm-{{timestamp}}",
+                "s3_bucket_name": "{{user `bucket_name`}}",
+                "role_name": "{{user `role_name`}}",
+                "license_type": "BYOL",
+                "tags": {
+                    "Team": "NCATS OIS - Development",
+                    "Application": "PCA",
+                    "Description": "Generated via packer amazon-import at {{timestamp}}"
+                }
+            }
+        ]
+    ]
+}
