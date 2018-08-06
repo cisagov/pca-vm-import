@@ -2,9 +2,10 @@
 
 Build with:
 ```
-packer build packer/pca.json
 cd terraform
 terraform apply
+cd ..
+packer build packer/pca_teamserver.json
 ```
 
 ## License ##
